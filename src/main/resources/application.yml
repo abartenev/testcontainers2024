@@ -1,0 +1,27 @@
+spring:
+  docker:
+    compose:
+      lifecycle-management: start-and-stop
+      start:
+        command: start
+      stop:
+        command: down
+        timeout: 1m
+    file: "docker/docker-compose.yaml"
+  datasource:
+#    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+#    username: ${POSTGRES_USER}
+#    password: ${POSTGRES_PASSWORD}
+    url: jdbc:postgresql://localhost:32769/users
+    username: superuser
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: users_scheme
+    generate-ddl: true
+    show-sql: true
