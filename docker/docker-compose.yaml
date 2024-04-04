@@ -10,8 +10,11 @@ services:
       - ../.env
     volumes:
       - ./imports/postgres/init/test_dump.sql:/docker-entrypoint-initdb.d/test_dump.sql
+    build:
+      context: ../../testcontainers2024/docker/imports/postgres
+      dockerfile: /docker/imports/postgres/Dockerfile
     ports:
-      - "5432:5432"
+      - "32768:5432"
     healthcheck:
       test: ["CMD-SHELL"]
       interval: 10s
